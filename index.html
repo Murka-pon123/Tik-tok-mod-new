@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>TikTok Скачать</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --text-color: #fff;
+      --card-bg: rgba(255, 255, 255, 0.06);
+    }
+    body.light {
+      --text-color: #111;
+      --card-bg: rgba(0, 0, 0, 0.06);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Rubik', sans-serif;
+      color: var(--text-color);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      transition: background-image 1s ease, background-color 0.5s ease;
+      opacity: 0;
+      animation: fadeInBody 1s ease-out forwards;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 10px #00f0ff55;
+      z-index: 10;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    header.logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #00f0ff;
+      max-width: 800px;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: logoFadeIn 1.5s ease-out;
+    }
+    header.logo:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 8px #00f0ff);
+    }
+    header.logo img {
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+    header.logo:hover img {
+      transform: rotate(-10deg) scale(1.1);
+    }
+
+    h1, h4 {
+      text-align: center;
+      margin: 40px auto 20px;
+      max-width: 800px;
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00f0ff;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .paragraph {
+      max-width: 800px;
+      margin: 20px auto;
+      display: flex;
+      gap: 15px;
+      background: var(--card-bg);
+      padding: 15px 20px;
+      border-left: 4px solid #00f0ff;
+      border-radius: 12px;
+      font-size: 1.05em;
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .paragraph.visible,
+    h1.visible,
+    h4.visible,
+    .review-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .paragraph i {
+      font-size: 1.6em;
+      color: #00f0ff;
+      animation: pulse 2s infinite;
+    }
+
+    a.download {
+      display: block;
+      margin: 30px auto;
+      padding: 15px 30px;
+      background: linear-gradient(to right, #00f0ff, #00bfff);
+      border-radius: 25px;
+      font-size: 1.2em;
+      color: #170E19;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      width: fit-content;
+      animation: pulseButton 2.5s infinite;
+    }
+
+    .reviews {
+      max-width: 900px;
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .social-icons a {
+      color: #00f0ff;
+      margin: 0 10px;
+      font-size: 1.5em;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    @keyframes pulseButton {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+      }
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes logoFadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1, h4, .paragraph {
+        margin: 20px 10px;
+        font-size: 1em;
+      }
+      .paragraph {
+        flex-direction: row;
+      }
+      .reviews {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="logo" onclick="scrollToTop()">
+    <span>TikTok</span>
+  </header>
+
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-adjust"></i> Тема
+  </button>
+
+  <h1>Скачать последнию версию TikTok<br><small>Download the latest version of TikTok</small></h1>
+
+  <div class="paragraph">
+    <i class="fab fa-tiktok"></i>
+    <p>TikTok — это социальная сеть для коротких видео.<br><em>TikTok is a social network for short videos.</em></p>
+  </div>
+
+  <div class="paragraph">
+    <i class="fab fa-tiktok"></i>
+    <p>Создавай ролики с эффектами и делись с друзьями!<br><em>Create fun videos with effects and share them!</em></p>
+  </div>
+
+  <h1>↓ Скачать на Android ↓<br><small>Download for Android</small></h1>
+  <h4>Версия 40.3.7 / Version 40.3.7</h4>
+  <a class="download" href="tik_tok.apk" download>Скачать / Download</a>
+
+  <h1>Отзывы / Reviews</h1>
+  <div class="reviews">
+    <div class="review-card">
+      <strong>Анна / Anna:</strong>
+      <p>Отличный мод! Без рекламы и всё работает!</p>
+    </div>
+    <div class="review-card">
+      <strong>Игорь / Igor:</strong>
+      <p>Работает быстро, и качество видео отличное.</p>
+    </div>
+    <div class="review-card">
+      <strong>Maria:</strong>
+      <p>Love the dark mode and clean layout. Better than original!</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>© 2025 TikTok Mod. Все права защищены.</div>
+    <div class="social-icons">
+      <a href="https://t.me/yourchannel" target="_blank" title="Telegram">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const prefersLight = localStorage.getItem('theme') === 'light';
+    if (prefersLight) document.body.classList.add('light');
+    setBackground(prefersLight ? 'light' : 'dark');
+
+    function toggleTheme() {
+      const isLight = document.body.classList.toggle('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      setBackground(isLight ? 'light' : 'dark');
+    }
+
+    function setBackground(theme) {
+      const bg = theme === 'light' ? 'tik1.png' : 'tik.png';
+      document.body.style.backgroundImage = `url('${bg}')`;
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    document.querySelectorAll('h1, h4, .paragraph, .review-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
